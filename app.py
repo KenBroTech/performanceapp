@@ -2,19 +2,15 @@ import streamlit as st
 import numpy as np
 import joblib
 
-# Load the pre-trained decision tree model
+# Load the decision tree model
 model = joblib.load('decision_tree_model.joblib')
 
-# Title of the dashboard
 st.title("Student Performance Predictor")
-
 st.write("Decision Tree Classifier Dashboard")
 
-# Create the input fields
 input_data = []
 
 field_names = ['Class','Age','Gender','Years in the School','Approx. Distance from your Hse. To Sch.(Km)','mode of transportation','Who do you stay with?','Average score Last term','Assignment Completion','Study Hours','Study Resources',  'How helpful are your teachers? ' ,'Do you attend extra classes' ,'What Helps you do better in School? ','Challenges in School']
-#fields
 class_ = st.number_input("Class", min_value=1, max_value=12, step=1)
 input_data.append(class_)
 
@@ -115,11 +111,15 @@ performance_value = {
 }[performance]
 input_data.append(performance_value)
 
-challenges = st.selectbox("What are your challenges in School?", options=["Yes", "No"])
+challenges = st.selectbox("What are your challenges in School?", options=["Understanding difficult subjects", "Keeping up with homework", "Dealing with distraction in class", "Not getting enough sleep", "Not feeling motivcated to learn", "Finding it hard to ask for help when needed"])
 # Encode the options as integers
 challenges_value = {
-    "Yes": 1,
-    "No": 2,
+    "Understanding difficult subjects": 1,
+    "Keeping up with homework": 2,
+    "Dealing with distraction in class": 3,
+    "Not getting enough sleep": 4,
+    "Not feeling motivcated to learn": 5,
+    "Finding it hard to ask for help when needed": 6,
 }[challenges]
 input_data.append(challenges_value)
 
