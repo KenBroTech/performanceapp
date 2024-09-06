@@ -131,12 +131,13 @@ class_names = [
     'Excellent',
     'Very Good',
     'Good',
-    'Below average'
+    'Below Average'
 ]
 
 # Classify the input data when the button is clicked
 if st.button("Classify"):
     prediction = model.predict(input_data)
     st.write(f"The predicted class is: {prediction[0]}")
-    st.write(f"The predicted class is: {class_names[prediction[0]]}")
+    st.write(f"Which interprates to a student who is :red[{class_names[prediction[0]]}]")
+    
 
